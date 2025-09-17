@@ -33,14 +33,16 @@ public class Stat : MonoBehaviour
             _inputField = GetComponentInChildren<TMP_InputField>();
         }
         _slider.onValueChanged.AddListener(OnSliderValueChanged);
-        _inputField.onSubmit.AddListener(OnTextInputSubmitted);
+        _inputField.onDeselect.AddListener(OnTextInputChanged);
+        _inputField.onSubmit.AddListener(OnTextInputChanged);
         ReflectSliderValue();
     }
 
     private void OnDisable()
     {
         _slider.onValueChanged.RemoveListener(OnSliderValueChanged);
-        _inputField.onSubmit.RemoveListener(OnTextInputSubmitted);
+        _inputField.onDeselect.RemoveListener(OnTextInputChanged);
+        _inputField.onSubmit.RemoveListener(OnTextInputChanged);
     }
 
     private void OnSliderValueChanged(float value)
@@ -48,7 +50,7 @@ public class Stat : MonoBehaviour
         ReflectSliderValue();
     }
 
-    private void OnTextInputSubmitted(string text)
+    private void OnTextInputChanged(string text)
     {
         if (int.TryParse(text, out int stat))
         {
