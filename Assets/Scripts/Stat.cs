@@ -52,14 +52,24 @@ public class Stat : MonoBehaviour
 
     private void OnTextInputChanged(string text)
     {
-        if (int.TryParse(text, out int stat))
+        if (IsValidStat(text, out int stat))
         {
-            _slider.value = stat;
+            _slider.value = ClampStat(stat);
         }
         else
         {
             ReflectSliderValue();
         }
+    }
+
+    private bool IsValidStat(string text, out int stat)
+    {
+        return int.TryParse(text, out stat);
+    }
+
+    private int ClampStat(int value)
+    {
+        return (int)Mathf.Clamp(value, _slider.minValue, _slider.maxValue);
     }
 
     private void ReflectSliderValue()
