@@ -56,10 +56,7 @@ public class Stat : MonoBehaviour
         {
             _slider.value = ClampStat(stat);
         }
-        else
-        {
-            ReflectSliderValue();
-        }
+        ReflectSliderValue();
     }
 
     private bool IsValidStat(string text, out int stat)
