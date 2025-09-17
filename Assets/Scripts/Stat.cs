@@ -66,7 +66,7 @@ public class Stat : MonoBehaviour
     {
         if (!_sliderFill) return;
 
-        if (_slider.value < 70)
+        if (_slider.value < 60)
         {
             _sliderFill.color = _lowColor;
         }
